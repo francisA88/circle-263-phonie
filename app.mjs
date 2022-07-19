@@ -1,3 +1,17 @@
+///Fetch previously saved numbers and use them for the suggestion items;
+if (!localStorage.numbers){
+  localStorage.numbers = "";
+}
+let dlist = document.querySelector("datalist");
+function retrieveTels(){
+  //Gets previously entered telephone numbers to use f9r the suggestions function
+  for (let num of localStorage.numbers.split(",")){
+    let option = document.createElement("option");
+    option.innerText = num;
+    dlist.appendChild(option);
+  }
+}
+retrieveTels();
 let networkNames = ["glo", "9mobile", "airtel", "mtn"];
 let networks = {
   "glo": ["0705","0805","0807","0811","0815","0905"],
@@ -14,8 +28,8 @@ let images = {
 }
 let logo = document.querySelector("#logo");
 logo.setAttribute("width", (logo.parentElement.clientHeight-4)+"px");
+let inp = document.querySelector("#tel");
 function watchInput(){
-  let inp = document.querySelector("#tel");
   inp.addEventListener("input", function(e){
     let value = `${this.value}`.replaceAll(" ","");
     let prefix = "";
@@ -40,6 +54,18 @@ function watchInput(){
        // console.log(prefix)
     }
   })
+}
+let submitBtn = document.querySelector("#submit");
+submitBtn.addEventListener("click", function(e){
+  //e.preventDefault()
+  storeNumber(inp.value);
+})
+function storeNumber(number){
+  //Used to store a previously inputted number to local storage which would be used as a suggestion later on.
+  let arr = localStorage.numbers.split(",");
+  if (!arr.includes(number))
+    arr.push(`${number}`);
+  localStorage.numbers = arr;
 }
 function startApp() {
     // Your entire app should not necessarily be coded inside this 
