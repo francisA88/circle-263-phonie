@@ -1,4 +1,7 @@
 ///Fetch previously saved numbers and use them for the suggestion items;
+/*PLEASE NOTE: ONLY SUPPORTS COUNTRY CODES THAT ARE THREE (3) CHARACTERS LONG!
+   Example: +234, +237
+   */
 if (!localStorage.numbers){
   localStorage.numbers = "";
 }
@@ -36,7 +39,7 @@ function watchInput(){
     if (value.startsWith("0")){
      prefix += value.slice(0,4);
     }
-    if (value.startsWith("+234")){
+    if (value.startsWith("+")){
      prefix += ("0"+value.slice(4,7));
     }
     let found = false;
