@@ -17,7 +17,7 @@ header{
   justify-content: center;
 }
 @font-face{
-  src: url("./css/Tangerine-regular.ttf");
+  src: url("./css/Tangerine-Regular.ttf");
   font-family: Tangerine;
 }
 .tangerine{
