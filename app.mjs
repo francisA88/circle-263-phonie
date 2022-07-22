@@ -23,11 +23,11 @@ let networks = {
   "9mobile": ["0809","0817","0818", "0908","0909"]
 }
 let images = {
-  "glo": "./images/glo.png",
-  "airtel": "./images/airtel.svg",
-  "mtn": "./images/mtn.jpeg",
-  "9mobile": "./images/9mobile.png",
-  "unknown": "./images/question.png"
+  "glo": "/images/glo.png",
+  "airtel": "/images/airtel.svg",
+  "mtn": "/images/mtn.jpeg",
+  "9mobile": "/images/9mobile.png",
+  "unknown": "/images/question.png"
 }
 let logo = document.querySelector("#logo");
 logo.setAttribute("width", (logo.parentElement.clientHeight-4)+"px");
@@ -45,16 +45,17 @@ function watchInput(){
     let found = false;
     for (let nw of networkNames){
       if (networks[nw].includes(prefix)){
-        logo.setAttribute("src",images[nw]);
-        logo.src = images[nw];
-        console.log(prefix, nw);
-        console.log(images[nw]);
+        //logo.setAttribute("src",location.origin+images[nw]);
+        logo.src = location.origin+images[nw];
+        /*console.log(prefix, nw);
+        console.log(images[nw]);*/
         found ^=1;
       }
     }
     if (!found){
-      logo.setAttribute("src", images['unknown']);
+      //logo.setAttribute("src", images['unknown']);
        // console.log(prefix)
+       logo.src = location.origin + images['unknown'];
     }
   })
 }
